@@ -10,6 +10,7 @@ import {
 import VisuallyHidden from '../VisuallyHidden';
 
 import styles from './Toast.module.css';
+import uuid4 from 'uuid4';
 
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -18,26 +19,25 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message, variant, toggleToast }) {
+function Toast({ variant, id, handleDeleteToast, children }) {
 
- console.log('variant', variant)
   return (
-    <div className={`${styles.toast} ${styles[variant]}`}>
-      <div className={styles.iconContainer}>
+    <div className={`${styles.toast} ${styles[variant]}`} >
+      <div className={styles.iconContainer} >
         {Object.keys(ICONS_BY_VARIANT).map((icon) => {
           if (variant === icon) {
             const Icon = ICONS_BY_VARIANT[icon];
-            return <Icon size={24} />;
+            return <Icon size={24} key={uuid4()} />;
           }
           return null;
         })}
       </div>
       <p className={styles.content}>
-        {message}
+        {children}
       </p>
       <button className={styles.closeButton}>
         <X size={24}
-        onClick={() => {toggleToast('close')}} />
+        onClick={() => {handleDeleteToast(id)}} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>

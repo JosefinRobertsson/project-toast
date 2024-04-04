@@ -1,17 +1,23 @@
 import React from 'react';
-
+import uuid4 from 'uuid4';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-function ToastShelf() {
+function ToastShelf({ toastData, handleDeleteToast }) {
+
   return (
     <ol className={styles.wrapper}>
-      <li className={styles.toastWrapper}>
-        <Toast variant="notice">Example notice toast</Toast>
+      {toastData.map((toast) => (
+      <li className={styles.toastWrapper} key={uuid4()}>
+        <Toast 
+        variant={toast.variant} 
+        id={toast.id}
+        handleDeleteToast={handleDeleteToast}
+        >
+          {toast.message}
+        </Toast>
       </li>
-      <li className={styles.toastWrapper}>
-        <Toast variant="error">Example error toast</Toast>
-      </li>
+      ))}
     </ol>
   );
 }
