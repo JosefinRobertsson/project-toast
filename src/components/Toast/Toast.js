@@ -6,11 +6,9 @@ import {
   Info,
   X,
 } from 'react-feather';
-
 import VisuallyHidden from '../VisuallyHidden';
-
 import styles from './Toast.module.css';
-import uuid4 from 'uuid4';
+import { ToastContext } from '../ToastProvider';
 
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -19,7 +17,8 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ variant, id, handleDeleteToast, children }) {
+function Toast({ variant, id, children }) {
+  const { handleDeleteToast } = React.useContext(ToastContext);
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`} >
@@ -27,7 +26,7 @@ function Toast({ variant, id, handleDeleteToast, children }) {
         {Object.keys(ICONS_BY_VARIANT).map((icon) => {
           if (variant === icon) {
             const Icon = ICONS_BY_VARIANT[icon];
-            return <Icon size={24} key={uuid4()} />;
+            return <Icon size={24} key={crypto.randomUUID()} />;
           }
           return null;
         })}

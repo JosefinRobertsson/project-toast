@@ -1,18 +1,18 @@
 import React from 'react';
-import uuid4 from 'uuid4';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
+import { ToastContext } from '../ToastProvider';
 
-function ToastShelf({ toastData, handleDeleteToast }) {
-
+function ToastShelf() {
+const { toasts } = React.useContext(ToastContext);
+console.log('toasts:', toasts);
   return (
     <ol className={styles.wrapper}>
-      {toastData.map((toast) => (
-      <li className={styles.toastWrapper} key={uuid4()}>
+      {toasts.slice(1).map((toast) => (
+      <li className={styles.toastWrapper} key={toast.id}>
         <Toast 
         variant={toast.variant} 
         id={toast.id}
-        handleDeleteToast={handleDeleteToast}
         >
           {toast.message}
         </Toast>
