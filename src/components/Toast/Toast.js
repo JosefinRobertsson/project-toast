@@ -19,24 +19,18 @@ const ICONS_BY_VARIANT = {
 
 function Toast({ variant, id, children }) {
   const { handleDeleteToast } = React.useContext(ToastContext);
+  const Icon = ICONS_BY_VARIANT[variant];
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`} >
       <div className={styles.iconContainer} >
-        {Object.keys(ICONS_BY_VARIANT).map((icon) => {
-          if (variant === icon) {
-            const Icon = ICONS_BY_VARIANT[icon];
-            return <Icon size={24} key={crypto.randomUUID()} />;
-          }
-          return null;
-        })}
+      <Icon size={24} />
       </div>
       <p className={styles.content}>
         {children}
       </p>
-      <button className={styles.closeButton}>
-        <X size={24}
-        onClick={() => {handleDeleteToast(id)}} />
+      <button className={styles.closeButton} onClick={() => {handleDeleteToast(id)}}>
+        <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
