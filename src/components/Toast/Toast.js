@@ -25,7 +25,7 @@ function Toast({ variant, id, children }) {
   return (
     <div className={`${styles.toast} ${styles[variant]}`} >
       <div className={styles.iconContainer} >
-      <Icon size={24} />
+        <Icon size={24} />
       </div>
       <p className={styles.content}>
         <VisuallyHidden>
@@ -33,9 +33,9 @@ function Toast({ variant, id, children }) {
         </VisuallyHidden>
         {children}
       </p>
-      <button className={styles.closeButton} onClick={() => {handleDeleteToast(id)}}
-      aria-label="Dismiss message"
-      aria-live="off">
+      <button className={styles.closeButton} onClick={() => { handleDeleteToast(id) }}
+        aria-label="Dismiss message"
+        aria-live="off">
         <X size={24} />
       </button>
     </div>

@@ -5,7 +5,8 @@ import { ToastContext } from '../ToastProvider';
 
 function ToastShelf() {
 const { toasts } = React.useContext(ToastContext);
-console.log('toasts:', toasts);
+
+//Map the array of toasts from 1, to exclude the initial state toast (it's needed because an empty array causes 'undefined' error)
   return (
     <ol 
     className={styles.wrapper} 

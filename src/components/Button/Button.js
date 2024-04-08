@@ -4,9 +4,9 @@ import styles from './Button.module.css';
 
 
 function Button({ className = '', ...delegated }) {
-  
 
-  return (  
+
+  return (
     <button
       className={`${styles.button} ${className}`}
       {...delegated}

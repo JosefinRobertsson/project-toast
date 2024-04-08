@@ -6,32 +6,18 @@ import ToastShelf from '../ToastShelf';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 
-
 function ToastPlayground() {
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
   const [message, setMessage] = React.useState('');
   const { toastSubmit } = React.useContext(ToastContext);
 
-  /*
-    const handleToastSubmit = (action, id) => {
-      if (action === 'pop') {
-        setToasts([...toasts, { message, variant, id: crypto.randomUUID() }]);
-      } else if (action === 'close') {
-        const nextToasts = toasts.filter((toast) => {
-          return toast.id !== id;
-        });
-        setToasts(nextToasts);
-      }
-      setMessage('');
-      setVariant(VARIANT_OPTIONS[0]);
-    };*/
 
-    const handleToastSubmit = (event) => {
-      event.preventDefault();
-      toastSubmit(message, variant);
-      setMessage('');
-      setVariant(VARIANT_OPTIONS[0]);
-    };
+  const handleToastSubmit = (event) => {
+    event.preventDefault();
+    toastSubmit(message, variant);
+    setMessage('');
+    setVariant(VARIANT_OPTIONS[0]);
+  };
 
 
   return (
